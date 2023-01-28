@@ -10,6 +10,8 @@
 
     <!--Description-->
     
+        <meta name="description" content="Docker镜像如何制作?1.容器转为镜像123$ docker commit 容器id 镜像名称(自己定义):版本号(自己定义)$ docker save -o 压缩文件名称 镜像名称:版本号$ docker load -i xxx.tar">
+    
 
     <!--Author-->
     
@@ -18,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content=""/>
+        <meta property="og:title" content="docker镜像制作"/>
     
 
     <!--Open Graph Description-->
@@ -29,7 +31,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -43,7 +45,7 @@
 
     <!-- Title -->
     
-    <title></title>
+    <title>docker镜像制作 - </title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -145,10 +147,9 @@
 
         <section class="main">
             
-                
 <div class="post">
 
-    <div class="post-header index">
+    <div class="post-header">
         <h1 class="title">
             <a href="/vitoblog/2023/01/28/docker%E9%95%9C%E5%83%8F%E5%88%B6%E4%BD%9C/">
                 docker镜像制作
@@ -163,143 +164,138 @@
         </div>
     </div>
 
-    
-        <div class="content">
-            <h3 id="Docker镜像如何制作"><a href="#Docker镜像如何制作" class="headerlink" title="Docker镜像如何制作?"></a>Docker镜像如何制作?</h3><h5 id="1-容器转为镜像"><a href="#1-容器转为镜像" class="headerlink" title="1.容器转为镜像"></a>1.容器转为镜像</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker commit 容器<span class="built_in">id</span> 镜像名称(自己定义):版本号(自己定义)</span><br><span class="line">$ docker save -o 压缩文件名称 镜像名称:版本号</span><br><span class="line">$ docker load -i xxx.tar</span><br></pre></td></tr></table></figure>
-        </div>
-        <a href="/vitoblog/2023/01/28/docker%E9%95%9C%E5%83%8F%E5%88%B6%E4%BD%9C/" class="read-more">Read More</a>
-    
+    <div class="content">
 
-</div>
-            
-                
-<div class="post">
+        <!-- Gallery -->
+        
 
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/vitoblog/2023/01/28/docker%E9%83%A8%E7%BD%B2mysql/">
-                docker部署mysql
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2023-01-28</span>
-            
-            
-            
-        </div>
+        <!-- Post Content -->
+        <h3 id="Docker镜像如何制作"><a href="#Docker镜像如何制作" class="headerlink" title="Docker镜像如何制作?"></a>Docker镜像如何制作?</h3><h5 id="1-容器转为镜像"><a href="#1-容器转为镜像" class="headerlink" title="1.容器转为镜像"></a>1.容器转为镜像</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker commit 容器<span class="built_in">id</span> 镜像名称(自己定义):版本号(自己定义)</span><br><span class="line">$ docker save -o 压缩文件名称 镜像名称:版本号</span><br><span class="line">$ docker load -i xxx.tar</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<br>
+
+<h5 id="2-dockerfile制作"><a href="#2-dockerfile制作" class="headerlink" title="2.dockerfile制作"></a>2.dockerfile制作</h5><p>Dockerfile 是一个文本文件<br>包含一条条指令<br>每一条指令构建一层，基于基础镜像，最终构建出一个新的镜像<br>对于开发人员，可以提供完全一致的开发环境<br>对于测试人员，可以直接拿开发提供的镜像或者通过Dockerfile文件构建一个新的镜像开始工作<br>对于运维人员，在部署时，可以实现应用的无缝一致<br>Dochub网址： <strong><a target="_blank" rel="noopener" href="https://hub.docker.com/">https://hub.docker.com</a></strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">关键字</th>
+<th align="left">作用</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">FROM</td>
+<td align="left">指定父镜像</td>
+<td align="left">指定dockerfile基于那个image构建</td>
+</tr>
+<tr>
+<td align="left">MAINTAINER</td>
+<td align="left">作者信息</td>
+<td align="left">用来标明这个dockerfile谁写的</td>
+</tr>
+<tr>
+<td align="left">LABEL</td>
+<td align="left">标签</td>
+<td align="left">用来标明dockerfile的标签，可以使用Label代替Maintainer最终都是在docker image 基本信息中可以查看</td>
+</tr>
+<tr>
+<td align="left">RUN</td>
+<td align="left">执行命令</td>
+<td align="left">执行一段命令，默认是&#x2F;bin&#x2F;bash 格式： RUN command 或者 RUN [‘command’,’param1’,’param2’]</td>
+</tr>
+<tr>
+<td align="left">CMD</td>
+<td align="left">容器启动命令</td>
+<td align="left">提供启动容器时的默认命令，和<code>ENTRYPOINT</code> 配合使用,格式 CMD command param1 param2 或者 CMD [‘command’, ‘param1’, ‘param2’]</td>
+</tr>
+<tr>
+<td align="left">ENTRYPOINT</td>
+<td align="left">入口</td>
+<td align="left">一般在制作一些执行就关闭的容器中会使用</td>
+</tr>
+<tr>
+<td align="left">COPY</td>
+<td align="left">复制文件</td>
+<td align="left">build的时候复制文件到mage中</td>
+</tr>
+<tr>
+<td align="left">ADD</td>
+<td align="left">添加文件</td>
+<td align="left">build的时候添加文件到mage中，不仅仅局限于当前build上下文，可以来源于远程服务</td>
+</tr>
+<tr>
+<td align="left">ENV</td>
+<td align="left">环境变量</td>
+<td align="left">build的时候环境变量，可以在启动的容器通过 -e 覆盖  格式： ENV name&#x3D;value</td>
+</tr>
+<tr>
+<td align="left">ARG</td>
+<td align="left">构建参数</td>
+<td align="left">构建参数只在构建的时候使用的参数，如果有ENV 那么ENV的相同名字的值始终覆盖ARG的参数</td>
+</tr>
+<tr>
+<td align="left">VOLUME</td>
+<td align="left">定义外部可以挂载的数据卷</td>
+<td align="left">指定build的image那些目录可以启动的时候挂载到文件系统中，启动容器的时候使用 -v 绑定， 格式 VOLUME[“目录”]</td>
+</tr>
+<tr>
+<td align="left">EXPOSE</td>
+<td align="left">暴露端口</td>
+<td align="left">定义容器运行的时候监听的端口，启动容器的时候使用 -p 来绑定暴露端口， 格式： EXPOSE 8080 或者 EXPOSE 8080&#x2F;udp</td>
+</tr>
+<tr>
+<td align="left">WORKDIR</td>
+<td align="left">工作目录</td>
+<td align="left">指定容器内部的工作目录，如果没有创建则自动创建，如果指定&#x2F;使用的是绝对地址，如果不是<code>/</code>开头，那么是在上一条workdir的路径的相对路径</td>
+</tr>
+<tr>
+<td align="left">USER</td>
+<td align="left">指定执行用户</td>
+<td align="left">指定build或者启动的时候用户，在RUN CMD ENTRYPOINT 执行的时候的用户</td>
+</tr>
+<tr>
+<td align="left">HEALTHCHECK</td>
+<td align="left">健康检查</td>
+<td align="left">指定检测当前容器的健康检测命令，基本上没用，因为很多时候应用本身有健康检测机制</td>
+</tr>
+<tr>
+<td align="left">ONBUILD</td>
+<td align="left">触发器</td>
+<td align="left">当存在ONBUILD关键字的镜像作为基础镜像的时候，当执行FROM完成之后，会执行ONBUILD的命令，但是不影响当前镜像，用于也不怎么大</td>
+</tr>
+<tr>
+<td align="left">STOPSIGNAL</td>
+<td align="left">发送信号量到宿主机</td>
+<td align="left">该STOPSIGNAL指令设置将发送到容器的系统调用信号以退出。</td>
+</tr>
+<tr>
+<td align="left">SHELL</td>
+<td align="left">指定执行脚本的shell</td>
+<td align="left">指定RUN CMD ENTRYPOINT 执行命令的额时候使用的shell</td>
+</tr>
+</tbody></table>
+<h4 id="通过dockerfile-发布-springboot项目"><a href="#通过dockerfile-发布-springboot项目" class="headerlink" title="通过dockerfile 发布 springboot项目"></a>通过dockerfile 发布 springboot项目</h4><h6 id="dockerfile-文件"><a href="#dockerfile-文件" class="headerlink" title="dockerfile 文件"></a>dockerfile 文件</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FROM java:8</span><br><span class="line">MAINTAINER vito&lt;vitolan999@gmail.com&gt;</span><br><span class="line">ADD springboot.jar app.jar #前面是通过Jenkins打包后的jar包名，后面的app.jar是指容器里面的jar名</span><br><span class="line">CMD java -jar app.jar</span><br></pre></td></tr></table></figure>
+<p>通过<code>docker build -f dockerfile文件路径 -t 镜像名称:版本</code> 构建容器</p>
+
     </div>
 
     
-        <div class="content">
-            <h2 id="MYSQL部署"><a href="#MYSQL部署" class="headerlink" title="MYSQL部署"></a>MYSQL部署</h2><p>容器内的网络服务和外部机器不能直接通讯<br>外部机器和宿主机可以直接通讯<br>宿主机和容器可以直接通讯<br>当容器中的网络服务需要被外部机器访问时，可以将容器中提供服务的端口映射到宿主机的端口中，外部机器访问宿主机的该端口，从而间接访问容器的服务<br>这种操作称为：端口映射</p>
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/vitoblog/tags/docker/">#docker</a>
         </div>
-        <a href="/vitoblog/2023/01/28/docker%E9%83%A8%E7%BD%B2mysql/" class="read-more">Read More</a>
+    
+
+    <!-- Comments -->
     
 
 </div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/vitoblog/2023/01/28/docker%E5%AE%B9%E5%99%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8D%B7/">
-                docker容器的数据卷
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2023-01-28</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>数据卷概念及作用<br>配置数据卷<br>配置数据卷容器</p>
-        </div>
-        <a href="/vitoblog/2023/01/28/docker%E5%AE%B9%E5%99%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8D%B7/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/vitoblog/2023/01/28/docker%E5%91%BD%E4%BB%A4/">
-                docker命令
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2023-01-28</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h4 id="一、docker镜像相关命令"><a href="#一、docker镜像相关命令" class="headerlink" title="一、docker镜像相关命令"></a>一、docker镜像相关命令</h4><h5 id="查看docker状态"><a href="#查看docker状态" class="headerlink" title="查看docker状态"></a>查看docker状态</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl status docker</span><br></pre></td></tr></table></figure>
-        </div>
-        <a href="/vitoblog/2023/01/28/docker%E5%91%BD%E4%BB%A4/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/vitoblog/2023/01/26/docker/">
-                docker安装
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2023-01-26</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的镜像中，然后发布到任何流行的Linux或Windows操作系统的机器上，也可以实现虚拟化。 容器是完全使用沙箱机制，相互之间不会有任何接口</p>
-        </div>
-        <a href="/vitoblog/2023/01/26/docker/" class="read-more">Read More</a>
-    
-
-</div>
-            
         </section>
+
     </div>
 </div>
-
-
-
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="wrap-pagination">
-                <a class="disabled" href="/vitoblog/">
-                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                </a>
-                <a class="" href="/vitoblog/page/2/">
-                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-
-
 
 
 </div>

@@ -10,6 +10,8 @@
 
     <!--Description-->
     
+        <meta name="description" content="数据卷概念及作用配置数据卷配置数据卷容器">
+    
 
     <!--Author-->
     
@@ -18,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content=""/>
+        <meta property="og:title" content="docker容器的数据卷"/>
     
 
     <!--Open Graph Description-->
@@ -29,7 +31,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -43,7 +45,7 @@
 
     <!-- Title -->
     
-    <title></title>
+    <title>docker容器的数据卷 - </title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -145,64 +147,9 @@
 
         <section class="main">
             
-                
 <div class="post">
 
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/vitoblog/2023/01/28/docker%E9%95%9C%E5%83%8F%E5%88%B6%E4%BD%9C/">
-                docker镜像制作
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2023-01-28</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h3 id="Docker镜像如何制作"><a href="#Docker镜像如何制作" class="headerlink" title="Docker镜像如何制作?"></a>Docker镜像如何制作?</h3><h5 id="1-容器转为镜像"><a href="#1-容器转为镜像" class="headerlink" title="1.容器转为镜像"></a>1.容器转为镜像</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker commit 容器<span class="built_in">id</span> 镜像名称(自己定义):版本号(自己定义)</span><br><span class="line">$ docker save -o 压缩文件名称 镜像名称:版本号</span><br><span class="line">$ docker load -i xxx.tar</span><br></pre></td></tr></table></figure>
-        </div>
-        <a href="/vitoblog/2023/01/28/docker%E9%95%9C%E5%83%8F%E5%88%B6%E4%BD%9C/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/vitoblog/2023/01/28/docker%E9%83%A8%E7%BD%B2mysql/">
-                docker部署mysql
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2023-01-28</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h2 id="MYSQL部署"><a href="#MYSQL部署" class="headerlink" title="MYSQL部署"></a>MYSQL部署</h2><p>容器内的网络服务和外部机器不能直接通讯<br>外部机器和宿主机可以直接通讯<br>宿主机和容器可以直接通讯<br>当容器中的网络服务需要被外部机器访问时，可以将容器中提供服务的端口映射到宿主机的端口中，外部机器访问宿主机的该端口，从而间接访问容器的服务<br>这种操作称为：端口映射</p>
-        </div>
-        <a href="/vitoblog/2023/01/28/docker%E9%83%A8%E7%BD%B2mysql/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
+    <div class="post-header">
         <h1 class="title">
             <a href="/vitoblog/2023/01/28/docker%E5%AE%B9%E5%99%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8D%B7/">
                 docker容器的数据卷
@@ -217,89 +164,42 @@
         </div>
     </div>
 
-    
-        <div class="content">
-            <p>数据卷概念及作用<br>配置数据卷<br>配置数据卷容器</p>
-        </div>
-        <a href="/vitoblog/2023/01/28/docker%E5%AE%B9%E5%99%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8D%B7/" class="read-more">Read More</a>
-    
+    <div class="content">
 
-</div>
-            
-                
-<div class="post">
+        <!-- Gallery -->
+        
 
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/vitoblog/2023/01/28/docker%E5%91%BD%E4%BB%A4/">
-                docker命令
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2023-01-28</span>
-            
-            
-            
-        </div>
+        <!-- Post Content -->
+        <p>数据卷概念及作用<br>配置数据卷<br>配置数据卷容器</p>
+<span id="more"></span>
+<p>数据卷概念（解决以下问题）：<br>Docker容器删除后，在容器中产生的数据不存在<br>Docker容器和外部机器不可以直接交换文件<br>容器之间进行数据交互</p>
+<h4 id="数据卷"><a href="#数据卷" class="headerlink" title="数据卷"></a>数据卷</h4><p>数据卷是宿主机中一个目录或文件<br>当容器目录和数据卷目录绑定后，对方的修改会立即同步<br>一个数据卷可以被多个容器同时挂载<br>一个容器也可以被挂载多个数据卷</p>
+<h4 id="配置数据卷"><a href="#配置数据卷" class="headerlink" title="配置数据卷"></a>配置数据卷</h4><p>创建启动容器时，使用 -v 参数， 设置数据卷</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker run ... -v 宿主机目录(文件):容器内目录(文件)</span><br><span class="line">$ docker run -it --name redis -v /root/data:/root/data_container  redis:latest /bin/bash</span><br></pre></td></tr></table></figure>
+<p>1.目录必须是绝对路径<br>2.如果目录不存在，会自动创建<br>3.可以挂载多个数据卷</p>
+<h4 id="配置数据卷容器"><a href="#配置数据卷容器" class="headerlink" title="配置数据卷容器"></a>配置数据卷容器</h4><p>1.创建数据卷容器， 使用-v参数设置数据卷<br>2.&#x2F;volume 是容器文件，宿主未设置目录，会自动分配</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --name redis -v /volume  redis:latest /bin/bash</span><br></pre></td></tr></table></figure>
+
+<h4 id="创建启动-C1-C2容器，使用-–volumes-from参数，设置容器的数据卷"><a href="#创建启动-C1-C2容器，使用-–volumes-from参数，设置容器的数据卷" class="headerlink" title="创建启动 C1,C2容器，使用 –volumes-from参数，设置容器的数据卷"></a>创建启动 C1,C2容器，使用 –volumes-from参数，设置容器的数据卷</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --name c1 --volumes-from redis  redis:latest /bin/bash</span><br><span class="line">$ docker run -it --name c2 --volumes-from redis  redis:latest /bin/bash</span><br></pre></td></tr></table></figure>
     </div>
 
     
-        <div class="content">
-            <h4 id="一、docker镜像相关命令"><a href="#一、docker镜像相关命令" class="headerlink" title="一、docker镜像相关命令"></a>一、docker镜像相关命令</h4><h5 id="查看docker状态"><a href="#查看docker状态" class="headerlink" title="查看docker状态"></a>查看docker状态</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl status docker</span><br></pre></td></tr></table></figure>
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/vitoblog/tags/docker/">#docker</a>
         </div>
-        <a href="/vitoblog/2023/01/28/docker%E5%91%BD%E4%BB%A4/" class="read-more">Read More</a>
+    
+
+    <!-- Comments -->
     
 
 </div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/vitoblog/2023/01/26/docker/">
-                docker安装
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2023-01-26</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的镜像中，然后发布到任何流行的Linux或Windows操作系统的机器上，也可以实现虚拟化。 容器是完全使用沙箱机制，相互之间不会有任何接口</p>
-        </div>
-        <a href="/vitoblog/2023/01/26/docker/" class="read-more">Read More</a>
-    
-
-</div>
-            
         </section>
+
     </div>
 </div>
-
-
-
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="wrap-pagination">
-                <a class="disabled" href="/vitoblog/">
-                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                </a>
-                <a class="" href="/vitoblog/page/2/">
-                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-
-
 
 
 </div>
