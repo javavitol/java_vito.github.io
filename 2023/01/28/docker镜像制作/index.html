@@ -161,6 +161,10 @@
             
             
             
+                <span class="category">
+                    <a href="/vitoblog/categories/docker/">docker</a>
+                </span>
+            
         </div>
     </div>
 
@@ -274,7 +278,7 @@
 <td align="left">指定RUN CMD ENTRYPOINT 执行命令的额时候使用的shell</td>
 </tr>
 </tbody></table>
-<h4 id="通过dockerfile-发布-springboot项目"><a href="#通过dockerfile-发布-springboot项目" class="headerlink" title="通过dockerfile 发布 springboot项目"></a>通过dockerfile 发布 springboot项目</h4><h6 id="dockerfile-文件"><a href="#dockerfile-文件" class="headerlink" title="dockerfile 文件"></a>dockerfile 文件</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FROM java:8</span><br><span class="line">MAINTAINER vito&lt;vitolan999@gmail.com&gt;</span><br><span class="line">ADD springboot.jar app.jar #前面是通过Jenkins打包后的jar包名，后面的app.jar是指容器里面的jar名</span><br><span class="line">CMD java -jar app.jar</span><br></pre></td></tr></table></figure>
+<h4 id="通过dockerfile-发布-springboot项目"><a href="#通过dockerfile-发布-springboot项目" class="headerlink" title="通过dockerfile 发布 springboot项目"></a>通过dockerfile 发布 springboot项目</h4><h6 id="dockerfile-文件"><a href="#dockerfile-文件" class="headerlink" title="dockerfile 文件"></a>dockerfile 文件</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FROM java:8</span><br><span class="line">MAINTAINER vito&lt;vitolan999@gmail.com&gt;</span><br><span class="line">ADD springboot.jar app.jar <span class="comment">#前面是通过Jenkins打包后的jar包名，后面的app.jar是指容器里面的jar名</span></span><br><span class="line">CMD java -jar app.jar</span><br></pre></td></tr></table></figure>
 <p>通过<code>docker build -f dockerfile文件路径 -t 镜像名称:版本</code> 构建容器</p>
 
     </div>
@@ -339,6 +343,21 @@
 
 
             
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/vitoblog/categories/hexo/">hexo</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/vitoblog/categories/docker/">docker</a>
+        </li>
+        
+    </ul>
+</div>
+
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
