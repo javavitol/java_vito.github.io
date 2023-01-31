@@ -10,6 +10,8 @@
 
     <!--Description-->
     
+        <meta name="description" content="Metrics-Server是集群核心监控数据的聚合器。 通俗地说，它存储了集群中各节点的监控数据(内存，磁盘，CPU，网络的使用率)，并且提供了API以供分析和使用。 Metrics-Server作为一个Deployment对象默认部署在Kubernetes集群中">
+    
 
     <!--Author-->
     
@@ -18,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content=""/>
+        <meta property="og:title" content="k8s-metrics server&amp;dashboard安装"/>
     
 
     <!--Open Graph Description-->
@@ -29,7 +31,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -43,7 +45,7 @@
 
     <!-- Title -->
     
-    <title>docker - </title>
+    <title>k8s-metrics server&amp;dashboard安装 - </title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -132,9 +134,7 @@
 <div class="container">
 
     <!-- Main Content -->
-    
-
-<div class="row">
+    <div class="row">
     <div class="col-sm-12">
 
         <!--Title and Logo-->
@@ -142,79 +142,72 @@
     <div class="logo">
         <a href="/vitoblog/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
         
-            <h1 id="main-title" class="title">#docker</h1>
-        
     </div>
 </header>
 
-        <section class="main archive-container">
+        <section class="main">
             
-                <div class="archive-post">
-    <a href="/vitoblog/2023/01/26/docker/">
-        <span class="archive-date">
-            Jan 2023
-        </span>
-        docker安装
-    </a>
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/vitoblog/2023/02/01/k8s-metrics-server/">
+                k8s-metrics server&dashboard安装
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2023-02-01</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/vitoblog/categories/kubernetes/">kubernetes</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>Metrics-Server是集群核心监控数据的聚合器。 通俗地说，它存储了集群中各节点的监控数据(内存，磁盘，CPU，网络的使用率)，并且提供了API以供分析和使用。 Metrics-Server作为一个Deployment对象默认部署在Kubernetes集群中</p>
+<span id="more"></span>
+<h3 id="metrics-server安装"><a href="#metrics-server安装" class="headerlink" title="metrics server安装"></a>metrics server安装</h3><ol>
+<li>从git上下载metrics-server<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装git</span></span><br><span class="line">$ yum install git -y</span><br><span class="line"><span class="comment"># 获取metrics-server，注意使用的版本</span></span><br><span class="line">$ git <span class="built_in">clone</span> -b v0.3.6 https://github.com/kubernetes-sigs/metrics-server.git</span><br><span class="line"><span class="comment"># 进入目录 /root/metrics-server/deploy/1.8+, 修改 vi metrics-server-deployment.yaml</span></span><br><span class="line"><span class="comment"># template下的spec添加</span></span><br><span class="line">hostNetwork: <span class="literal">true</span></span><br><span class="line"><span class="comment"># containers下</span></span><br><span class="line">args:</span><br><span class="line">- --kubelet-insecure-tls</span><br><span class="line">- --kubelet-preferred-address-types=InternalIP,Hostname,InternalDNS,ExternalDNS,ExternalIP</span><br><span class="line"><span class="comment">#image 修改成国内镜像地址（如果你是科学上网，可以不修改）</span></span><br><span class="line">image: registry.cn-hangzhou.aliyuncs.com/google_containers/meetrics-server-amd64:v0.3.6</span><br></pre></td></tr></table></figure></li>
+<li>在目录下<code>/root/metrics-server/deploy/1.8+</code>执行<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl apply -f ./</span><br></pre></td></tr></table></figure></li>
+<li>正确安装后查看<code>kubectl get pods -n kube-system</code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">metrics-server-76fb8757c5-jvwqh   1/1     Running   0          72s</span><br></pre></td></tr></table></figure></li>
+<li>使用命令<code>kubectl top node</code>查看资源使用情况<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NAME     CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%   </span><br><span class="line">master   141m         7%     971Mi           56%       </span><br><span class="line">node1    30m          1%     343Mi           20%       </span><br><span class="line">node2    24m          1%     337Mi           19%  </span><br></pre></td></tr></table></figure>
+<br></li>
+</ol>
+<h3 id="dashboard安装"><a href="#dashboard安装" class="headerlink" title="dashboard安装"></a>dashboard安装</h3><ol>
+<li>下载yaml文件<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载yaml,并运行dashboard</span></span><br><span class="line">$ wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml</span><br><span class="line"><span class="comment"># 要让外部能访问到dashboard， 则修改文件 kubernetes-dashboard的 service类型，在spec下增加</span></span><br><span class="line"><span class="built_in">type</span>: NodePort</span><br><span class="line"><span class="comment"># 部署</span></span><br><span class="line">$ kubectl create -f recommended.yaml</span><br><span class="line"><span class="comment"># 查看 namespace下的kubernetes-dashboard下的资源</span></span><br><span class="line">$ kubectl get pod,svc -n kubernetes-dashboard</span><br><span class="line"><span class="comment"># 成功</span></span><br><span class="line">NAME                                             READY   STATUS    RESTARTS   AGE</span><br><span class="line">pod/dashboard-metrics-scraper-85c5754dbd-xch97   1/1     Running   0          2m3s</span><br><span class="line">pod/kubernetes-dashboard-6dc54cb456-pqjvm        1/1     Running   0          2m3s</span><br><span class="line"></span><br><span class="line">NAME                                TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)         AGE</span><br><span class="line">service/dashboard-metrics-scraper   ClusterIP   10.111.55.168   &lt;none&gt;        8000/TCP        2m3s</span><br><span class="line">service/kubernetes-dashboard        NodePort    10.100.66.210   &lt;none&gt;        443:32700/TCP   2m3s</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+部署时，如果出现错误 <font color=red>error validating “recommended.yaml”: error validating data: ValidationError(Deployment.spec.template.spec.securityContext): unknown field “seccompProfile” in io.k8s.api.core.v1.PodSecurityContext;</font><br>则，注释recommended.yaml中的<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">securityContext:</span><br><span class="line">        seccompProfile:</span><br><span class="line">          <span class="built_in">type</span>: RuntimeDefault</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/vitoblog/tags/kubernetes/">#kubernetes</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
 </div>
-            
-                <div class="archive-post">
-    <a href="/vitoblog/2023/01/28/docker%E5%AE%B9%E5%99%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8D%B7/">
-        <span class="archive-date">
-            Jan 2023
-        </span>
-        docker容器的数据卷
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/vitoblog/2023/01/28/docker%E5%91%BD%E4%BB%A4/">
-        <span class="archive-date">
-            Jan 2023
-        </span>
-        docker命令
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/vitoblog/2023/01/28/docker%E6%9C%8D%E5%8A%A1%E7%BC%96%E6%8E%92/">
-        <span class="archive-date">
-            Jan 2023
-        </span>
-        docker服务编排(docker compose)
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/vitoblog/2023/01/28/docker%E9%83%A8%E7%BD%B2mysql/">
-        <span class="archive-date">
-            Jan 2023
-        </span>
-        docker部署mysql
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/vitoblog/2023/01/28/docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%95%9C%E5%83%8F%E6%93%8D%E4%BD%9C/">
-        <span class="archive-date">
-            Jan 2023
-        </span>
-        docker私有仓库搭建及镜像操作
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/vitoblog/2023/01/28/docker%E9%95%9C%E5%83%8F%E5%88%B6%E4%BD%9C/">
-        <span class="archive-date">
-            Jan 2023
-        </span>
-        docker镜像制作(dockerfile)
-    </a>
-</div>
-            
         </section>
+
     </div>
 </div>
+
 
 </div>
 
