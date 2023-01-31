@@ -10,6 +10,8 @@
 
     <!--Description-->
     
+        <meta name="description" content="docker官方的docker hub(https://hub.docker.com) 是一个用于管理公共镜像的仓库，可以从上面拉取镜像到本地，也可以把我们的镜像推送上去。但，有时候我们服务器无法访问互联网，或者不希望将自己的镜像放到公网中，那么我们就需要搭建自己的私有仓库来存储和管理镜像。">
+    
 
     <!--Author-->
     
@@ -18,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content=""/>
+        <meta property="og:title" content="docker私有仓库搭建及镜像操作"/>
     
 
     <!--Open Graph Description-->
@@ -29,7 +31,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -43,7 +45,7 @@
 
     <!-- Title -->
     
-    <title></title>
+    <title>docker私有仓库搭建及镜像操作 - </title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -145,41 +147,9 @@
 
         <section class="main">
             
-                
 <div class="post">
 
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/vitoblog/2023/01/31/kubernetes%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85/">
-                kubernetes介绍安装(kubeadm安装)
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2023-01-31</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/vitoblog/categories/kubernetes/">kubernetes</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>Kubernetes 也称为K8s，是用于自动部署、扩缩和管理容器化应用程序的开源系统。 它将组成应用程序的容器组合成逻辑单元，以便于管理和服务发现。 Kubernetes 源自Google 15 年生产环境的运维经验，同时凝聚了社区的最佳创意和实践。</p>
-        </div>
-        <a href="/vitoblog/2023/01/31/kubernetes%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
+    <div class="post-header">
         <h1 class="title">
             <a href="/vitoblog/2023/01/28/docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%95%9C%E5%83%8F%E6%93%8D%E4%BD%9C/">
                 docker私有仓库搭建及镜像操作
@@ -198,129 +168,40 @@
         </div>
     </div>
 
-    
-        <div class="content">
-            <p>docker官方的docker hub(<a target="_blank" rel="noopener" href="https://hub.docker.com/">https://hub.docker.com</a>) 是一个用于管理公共镜像的仓库，可以从上面拉取镜像到本地，也可以把我们的镜像推送上去。但，有时候我们服务器无法访问互联网，或者不希望将自己的镜像放到公网中，那么我们就需要搭建自己的私有仓库来存储和管理镜像。</p>
-        </div>
-        <a href="/vitoblog/2023/01/28/docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%95%9C%E5%83%8F%E6%93%8D%E4%BD%9C/" class="read-more">Read More</a>
-    
+    <div class="content">
 
-</div>
-            
-                
-<div class="post">
+        <!-- Gallery -->
+        
 
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/vitoblog/2023/01/28/docker%E6%9C%8D%E5%8A%A1%E7%BC%96%E6%8E%92/">
-                docker服务编排(docker compose)
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2023-01-28</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/vitoblog/categories/docker/">docker</a>
-                </span>
-            
-        </div>
+        <!-- Post Content -->
+        <p>docker官方的docker hub(<a target="_blank" rel="noopener" href="https://hub.docker.com/">https://hub.docker.com</a>) 是一个用于管理公共镜像的仓库，可以从上面拉取镜像到本地，也可以把我们的镜像推送上去。但，有时候我们服务器无法访问互联网，或者不希望将自己的镜像放到公网中，那么我们就需要搭建自己的私有仓库来存储和管理镜像。</p>
+<span id="more"></span>
+
+<h3 id="docker私有仓库搭建"><a href="#docker私有仓库搭建" class="headerlink" title="docker私有仓库搭建"></a>docker私有仓库搭建</h3><p>1.私有仓库搭建</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1.拉取私有仓库镜像</span></span><br><span class="line">$ docker pull registry</span><br><span class="line"><span class="comment">#2.启动私有仓库容器</span></span><br><span class="line">$ docker run -<span class="built_in">id</span> --name registry -p 5000:5000 registry</span><br><span class="line"><span class="comment">#3.打开浏览器，输入地址 http://私有仓库服务器ip:5000/v2/_catalog ,看到&#123;&quot;repositories&quot;:[]&#125; 表示私有仓库搭建成功</span></span><br><span class="line"><span class="comment">#4.修改daemon.json</span></span><br><span class="line">$ vim /etc/docker/daemon.json</span><br><span class="line"><span class="comment"># 在上述文件添加一个key,保存退出，此步用于让docker信任私有仓库地址；</span></span><br><span class="line">&#123;<span class="string">&quot;insecure-registries&quot;</span>:[<span class="string">&quot;私有仓库服务器ip:5000&quot;</span>]&#125;</span><br><span class="line"><span class="comment">#5.重启docker</span></span><br><span class="line">$ systemctl restart docker</span><br><span class="line">$ docker start registry</span><br></pre></td></tr></table></figure>
+
+<h3 id="将镜像上传至私有仓库"><a href="#将镜像上传至私有仓库" class="headerlink" title="将镜像上传至私有仓库"></a>将镜像上传至私有仓库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1.标记镜像为私有仓库的镜像</span></span><br><span class="line">$ docker tag redis:latest 私有仓库服务器ip:5000/redis:latest</span><br><span class="line"><span class="comment">#2.上传标记的镜像</span></span><br><span class="line">$ docker push 私有仓库服务器ip:5000/redis:latest</span><br></pre></td></tr></table></figure>
+
+<h3 id="从私有仓库拉取镜像"><a href="#从私有仓库拉取镜像" class="headerlink" title="从私有仓库拉取镜像"></a>从私有仓库拉取镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull 镜像名称</span><br></pre></td></tr></table></figure>
     </div>
 
     
-        <div class="content">
-            <h4 id="服务编排"><a href="#服务编排" class="headerlink" title="服务编排"></a>服务编排</h4><p>微服务架构的应用系统中一般包含若干个微服务，每个微服务一般都会部署多个实例，如果每个微服务都要手动启动&#x2F;停止，维护的工作量会很大。<br>1.要从dockerfile build image 或者去dockerhub 拉取image<br>2.要创建多个container<br>3.要管理这些container(启动停止删除)</p>
-<h6 id="服务编排：按照一定的业务规则批量管理容器"><a href="#服务编排：按照一定的业务规则批量管理容器" class="headerlink" title="服务编排：按照一定的业务规则批量管理容器"></a>服务编排：按照一定的业务规则批量管理容器</h6>
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/vitoblog/tags/docker/">#docker</a>
         </div>
-        <a href="/vitoblog/2023/01/28/docker%E6%9C%8D%E5%8A%A1%E7%BC%96%E6%8E%92/" class="read-more">Read More</a>
+    
+
+    <!-- Comments -->
     
 
 </div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/vitoblog/2023/01/28/docker%E9%95%9C%E5%83%8F%E5%88%B6%E4%BD%9C/">
-                docker镜像制作(dockerfile)
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2023-01-28</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/vitoblog/categories/docker/">docker</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h3 id="Docker镜像如何制作"><a href="#Docker镜像如何制作" class="headerlink" title="Docker镜像如何制作?"></a>Docker镜像如何制作?</h3><h5 id="1-容器转为镜像"><a href="#1-容器转为镜像" class="headerlink" title="1.容器转为镜像"></a>1.容器转为镜像</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker commit 容器<span class="built_in">id</span> 镜像名称(自己定义):版本号(自己定义)</span><br><span class="line">$ docker save -o 压缩文件名称 镜像名称:版本号</span><br><span class="line">$ docker load -i xxx.tar</span><br></pre></td></tr></table></figure>
-        </div>
-        <a href="/vitoblog/2023/01/28/docker%E9%95%9C%E5%83%8F%E5%88%B6%E4%BD%9C/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/vitoblog/2023/01/28/docker%E9%83%A8%E7%BD%B2mysql/">
-                docker部署mysql
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2023-01-28</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/vitoblog/categories/docker/">docker</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h2 id="MYSQL部署"><a href="#MYSQL部署" class="headerlink" title="MYSQL部署"></a>MYSQL部署</h2><p>容器内的网络服务和外部机器不能直接通讯<br>外部机器和宿主机可以直接通讯<br>宿主机和容器可以直接通讯<br>当容器中的网络服务需要被外部机器访问时，可以将容器中提供服务的端口映射到宿主机的端口中，外部机器访问宿主机的该端口，从而间接访问容器的服务<br>这种操作称为：端口映射</p>
-        </div>
-        <a href="/vitoblog/2023/01/28/docker%E9%83%A8%E7%BD%B2mysql/" class="read-more">Read More</a>
-    
-
-</div>
-            
         </section>
+
     </div>
 </div>
-
-
-
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="wrap-pagination">
-                <a class="disabled" href="/vitoblog/">
-                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                </a>
-                <a class="" href="/vitoblog/page/2/">
-                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-
-
 
 
 </div>

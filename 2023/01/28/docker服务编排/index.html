@@ -10,6 +10,9 @@
 
     <!--Description-->
     
+        <meta name="description" content="服务编排微服务架构的应用系统中一般包含若干个微服务，每个微服务一般都会部署多个实例，如果每个微服务都要手动启动&amp;#x2F;停止，维护的工作量会很大。1.要从dockerfile build image 或者去dockerhub 拉取image2.要创建多个container3.要管理这些container(启动停止删除)
+服务编排：按照一定的业务规则批量管理容器">
+    
 
     <!--Author-->
     
@@ -18,7 +21,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content=""/>
+        <meta property="og:title" content="docker服务编排(docker compose)"/>
     
 
     <!--Open Graph Description-->
@@ -29,7 +32,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -43,7 +46,7 @@
 
     <!-- Title -->
     
-    <title></title>
+    <title>docker服务编排(docker compose) - </title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -145,72 +148,9 @@
 
         <section class="main">
             
-                
 <div class="post">
 
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/vitoblog/2023/01/31/kubernetes%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85/">
-                kubernetes介绍安装(kubeadm安装)
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2023-01-31</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/vitoblog/categories/kubernetes/">kubernetes</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>Kubernetes 也称为K8s，是用于自动部署、扩缩和管理容器化应用程序的开源系统。 它将组成应用程序的容器组合成逻辑单元，以便于管理和服务发现。 Kubernetes 源自Google 15 年生产环境的运维经验，同时凝聚了社区的最佳创意和实践。</p>
-        </div>
-        <a href="/vitoblog/2023/01/31/kubernetes%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/vitoblog/2023/01/28/docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%95%9C%E5%83%8F%E6%93%8D%E4%BD%9C/">
-                docker私有仓库搭建及镜像操作
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2023-01-28</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/vitoblog/categories/docker/">docker</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>docker官方的docker hub(<a target="_blank" rel="noopener" href="https://hub.docker.com/">https://hub.docker.com</a>) 是一个用于管理公共镜像的仓库，可以从上面拉取镜像到本地，也可以把我们的镜像推送上去。但，有时候我们服务器无法访问互联网，或者不希望将自己的镜像放到公网中，那么我们就需要搭建自己的私有仓库来存储和管理镜像。</p>
-        </div>
-        <a href="/vitoblog/2023/01/28/docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%95%9C%E5%83%8F%E6%93%8D%E4%BD%9C/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
+    <div class="post-header">
         <h1 class="title">
             <a href="/vitoblog/2023/01/28/docker%E6%9C%8D%E5%8A%A1%E7%BC%96%E6%8E%92/">
                 docker服务编排(docker compose)
@@ -229,98 +169,51 @@
         </div>
     </div>
 
-    
-        <div class="content">
-            <h4 id="服务编排"><a href="#服务编排" class="headerlink" title="服务编排"></a>服务编排</h4><p>微服务架构的应用系统中一般包含若干个微服务，每个微服务一般都会部署多个实例，如果每个微服务都要手动启动&#x2F;停止，维护的工作量会很大。<br>1.要从dockerfile build image 或者去dockerhub 拉取image<br>2.要创建多个container<br>3.要管理这些container(启动停止删除)</p>
-<h6 id="服务编排：按照一定的业务规则批量管理容器"><a href="#服务编排：按照一定的业务规则批量管理容器" class="headerlink" title="服务编排：按照一定的业务规则批量管理容器"></a>服务编排：按照一定的业务规则批量管理容器</h6>
-        </div>
-        <a href="/vitoblog/2023/01/28/docker%E6%9C%8D%E5%8A%A1%E7%BC%96%E6%8E%92/" class="read-more">Read More</a>
-    
+    <div class="content">
 
-</div>
-            
-                
-<div class="post">
+        <!-- Gallery -->
+        
 
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/vitoblog/2023/01/28/docker%E9%95%9C%E5%83%8F%E5%88%B6%E4%BD%9C/">
-                docker镜像制作(dockerfile)
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2023-01-28</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/vitoblog/categories/docker/">docker</a>
-                </span>
-            
-        </div>
+        <!-- Post Content -->
+        <h4 id="服务编排"><a href="#服务编排" class="headerlink" title="服务编排"></a>服务编排</h4><p>微服务架构的应用系统中一般包含若干个微服务，每个微服务一般都会部署多个实例，如果每个微服务都要手动启动&#x2F;停止，维护的工作量会很大。<br>1.要从dockerfile build image 或者去dockerhub 拉取image<br>2.要创建多个container<br>3.要管理这些container(启动停止删除)</p>
+<h6 id="服务编排：按照一定的业务规则批量管理容器"><a href="#服务编排：按照一定的业务规则批量管理容器" class="headerlink" title="服务编排：按照一定的业务规则批量管理容器"></a>服务编排：按照一定的业务规则批量管理容器</h6><span id="more"></span>
+<br>
+
+<h5 id="Docker-Compose"><a href="#Docker-Compose" class="headerlink" title="Docker Compose"></a>Docker Compose</h5><p>docker compose 是一个编排多容器分布式部署的工具，提供命令集管理容器化应用的完整开发周期，包括服务构建，启动和停止，使用步骤：</p>
+<p>1.利用<code>dockerfile</code> 定义运行环境镜像<br>2.使用<code>docker-compose.yml</code>定义组成应用的各服务<br>3.运行<code>docker-compose up</code> 启动应用</p>
+<h3 id="一、Ubuntu安装Docker-compose"><a href="#一、Ubuntu安装Docker-compose" class="headerlink" title="一、Ubuntu安装Docker compose"></a>一、Ubuntu安装Docker compose</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -L <span class="string">&quot;https://github.com/docker/compose/releases/download/v2.6.1/docker-compose-<span class="subst">$(uname -s)</span>-<span class="subst">$(uname -m)</span>&quot;</span> -o /usr/local/bin/docker-compose</span><br><span class="line"></span><br><span class="line">sudo <span class="built_in">chmod</span> +x /usr/local/bin/docker-compose</span><br><span class="line">docker-compose --version</span><br></pre></td></tr></table></figure>
+<p>出现如下信息，表示docker-compose安装成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Docker Compose version v2.6.1</span><br></pre></td></tr></table></figure>
+<h3 id="删除docker-compose"><a href="#删除docker-compose" class="headerlink" title="删除docker-compose"></a>删除docker-compose</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">rm</span> /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure>
+<h3 id="docker-compose-yml-编排-springboot项目，nginx"><a href="#docker-compose-yml-编排-springboot项目，nginx" class="headerlink" title="docker-compose.yml 编排 springboot项目，nginx"></a>docker-compose.yml 编排 springboot项目，nginx</h3><p>1.编写<code>docker-compose.yml</code>文件如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">version: <span class="string">&#x27;3&#x27;</span></span><br><span class="line">servies:</span><br><span class="line">  nginx:</span><br><span class="line">   image: nginx</span><br><span class="line">   ports:</span><br><span class="line">    - 80: 80</span><br><span class="line">   links:</span><br><span class="line">    - app</span><br><span class="line">   volumes:</span><br><span class="line">    - ./nginx/conf.d:/etc/nginx/conf.d</span><br><span class="line">  app:</span><br><span class="line">   image: app</span><br><span class="line">   expose:</span><br><span class="line">    - <span class="string">&quot;8080&quot;</span></span><br></pre></td></tr></table></figure>
+<p>2.创建 <code>/nginx/conf.d</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">mkdir</span> -p ./nginx/conf.d</span><br></pre></td></tr></table></figure>
+<p>3.在<code>/nginx/conf.d</code>目录下编写xxx.conf文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	listen 80;</span><br><span class="line">	access_log off;</span><br><span class="line">	location / &#123;</span><br><span class="line">		proxy_pass http://app:8080</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4.在<code> docker-compose.yml</code> 文件下目录启动容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose up</span><br><span class="line">$ docker-compose up -d app <span class="comment">#启动指定服务</span></span><br><span class="line">$ docker-compose restart app <span class="comment">#重启服务</span></span><br></pre></td></tr></table></figure>
+<p>5.测试访问</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.6/hello</span><br></pre></td></tr></table></figure>
     </div>
 
     
-        <div class="content">
-            <h3 id="Docker镜像如何制作"><a href="#Docker镜像如何制作" class="headerlink" title="Docker镜像如何制作?"></a>Docker镜像如何制作?</h3><h5 id="1-容器转为镜像"><a href="#1-容器转为镜像" class="headerlink" title="1.容器转为镜像"></a>1.容器转为镜像</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker commit 容器<span class="built_in">id</span> 镜像名称(自己定义):版本号(自己定义)</span><br><span class="line">$ docker save -o 压缩文件名称 镜像名称:版本号</span><br><span class="line">$ docker load -i xxx.tar</span><br></pre></td></tr></table></figure>
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/vitoblog/tags/docker/">#docker</a>
         </div>
-        <a href="/vitoblog/2023/01/28/docker%E9%95%9C%E5%83%8F%E5%88%B6%E4%BD%9C/" class="read-more">Read More</a>
+    
+
+    <!-- Comments -->
     
 
 </div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/vitoblog/2023/01/28/docker%E9%83%A8%E7%BD%B2mysql/">
-                docker部署mysql
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2023-01-28</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/vitoblog/categories/docker/">docker</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h2 id="MYSQL部署"><a href="#MYSQL部署" class="headerlink" title="MYSQL部署"></a>MYSQL部署</h2><p>容器内的网络服务和外部机器不能直接通讯<br>外部机器和宿主机可以直接通讯<br>宿主机和容器可以直接通讯<br>当容器中的网络服务需要被外部机器访问时，可以将容器中提供服务的端口映射到宿主机的端口中，外部机器访问宿主机的该端口，从而间接访问容器的服务<br>这种操作称为：端口映射</p>
-        </div>
-        <a href="/vitoblog/2023/01/28/docker%E9%83%A8%E7%BD%B2mysql/" class="read-more">Read More</a>
-    
-
-</div>
-            
         </section>
+
     </div>
 </div>
-
-
-
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="wrap-pagination">
-                <a class="disabled" href="/vitoblog/">
-                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                </a>
-                <a class="" href="/vitoblog/page/2/">
-                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-
-
 
 
 </div>

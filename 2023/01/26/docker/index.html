@@ -203,6 +203,19 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$docker</span> container run hello-world</span><br></pre></td></tr></table></figure>
 <p>输出结果：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Unable to find image <span class="string">&#x27;hello-world:latest&#x27;</span> locally</span><br><span class="line">latest: Pulling from library/hello-world</span><br><span class="line">2db29710123e: Pull complete </span><br><span class="line">Digest: sha256:aa0cc8055b82dc2509bed2e19b275c8f463506616377219d9642221ab53cf9fe</span><br><span class="line">Status: Downloaded newer image <span class="keyword">for</span> hello-world:latest</span><br><span class="line"></span><br><span class="line">Hello from Docker!</span><br><span class="line">This message shows that your installation appears to be working correctly.</span><br><span class="line"></span><br><span class="line">To generate this message, Docker took the following steps:</span><br><span class="line"> 1. The Docker client contacted the Docker daemon.</span><br><span class="line"> 2. The Docker daemon pulled the <span class="string">&quot;hello-world&quot;</span> image from the Docker Hub.</span><br><span class="line">    (amd64)</span><br><span class="line"> 3. The Docker daemon created a new container from that image <span class="built_in">which</span> runs the</span><br><span class="line">    executable that produces the output you are currently reading.</span><br><span class="line"> 4. The Docker daemon streamed that output to the Docker client, <span class="built_in">which</span> sent it</span><br><span class="line">    to your terminal.</span><br><span class="line"></span><br><span class="line">To try something more ambitious, you can run an Ubuntu container with:</span><br><span class="line"> $ docker run -it ubuntu bash</span><br><span class="line"></span><br><span class="line">Share images, automate workflows, and more with a free Docker ID:</span><br><span class="line"> https://hub.docker.com/</span><br><span class="line"></span><br><span class="line">For more examples and ideas, visit:</span><br><span class="line"> https://docs.docker.com/get-started/</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="二、在-centos-上安装-Docker"><a href="#二、在-centos-上安装-Docker" class="headerlink" title="二、在 centos 上安装 Docker"></a>二、在 centos 上安装 Docker</h4><ol>
+<li>切换镜像源<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo -O /etc/yum.repos.d/docker-ce.repo</span><br></pre></td></tr></table></figure></li>
+<li>查看支持的docker版本<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum list docker-ce --showduplicates</span><br></pre></td></tr></table></figure></li>
+<li>安装特定版本的docker-ce，18.06.3.ce.el7 这个版本有些参数已经设定，如果指定其他版本，需要搜索一下是否需要一些额外参数配置 <em><code>必须指定 --setopt=obsoletes=0, 否则yum会自动安装更高版本</code></em></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum install --<span class="built_in">setopt</span>=obsoletes=0 docker-ce-18.06.3.ce-3.el7 -y</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>添加一个配置文件，docker在默认情况下使用的Cgroup Driver为cgroupfs,而kubernetes推荐使用systemd来代替cgroupfs<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">mkdir</span> /etc/docker</span><br><span class="line">$ <span class="built_in">cat</span> &lt;&lt;<span class="string">EOF &gt; /etc/docker/daemon.json</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">	&quot;exec-opts&quot;:[&quot;native.cgroupdriver=systemd&quot;],</span></span><br><span class="line"><span class="string">	&quot;registry-mirrors&quot;:[&quot;https://hub.docker.com/&quot;] </span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"><span class="comment"># 如果是国内的，registry-mirrors可以改成阿里云的镜像仓库地址</span></span><br></pre></td></tr></table></figure></li>
+<li>启动docker<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl start docker <span class="comment"># 启动docker</span></span><br><span class="line">$ systemctl <span class="built_in">enable</span> docker <span class="comment"># 开机启动docker</span></span><br></pre></td></tr></table></figure></li>
+<li>查看docker状态和版本<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker version</span><br></pre></td></tr></table></figure></li>
+</ol>
+
     </div>
 
     
@@ -244,19 +257,19 @@
         <ul>
             
             <li>
-                <a class="footer-post" href="/vitoblog/2023/01/28/docker%E9%95%9C%E5%83%8F%E5%88%B6%E4%BD%9C/">docker镜像制作</a>
+                <a class="footer-post" href="/vitoblog/2023/01/31/kubernetes%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85/">kubernetes介绍安装(kubeadm安装)</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/vitoblog/2023/01/28/docker%E9%83%A8%E7%BD%B2mysql/">docker部署mysql</a>
+                <a class="footer-post" href="/vitoblog/2023/01/28/docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%95%9C%E5%83%8F%E6%93%8D%E4%BD%9C/">docker私有仓库搭建及镜像操作</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/vitoblog/2023/01/28/docker%E5%AE%B9%E5%99%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8D%B7/">docker容器的数据卷</a>
+                <a class="footer-post" href="/vitoblog/2023/01/28/docker%E6%9C%8D%E5%8A%A1%E7%BC%96%E6%8E%92/">docker服务编排(docker compose</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/vitoblog/2023/01/28/docker%E5%91%BD%E4%BB%A4/">docker命令</a>
+                <a class="footer-post" href="/vitoblog/2023/01/28/docker%E9%95%9C%E5%83%8F%E5%88%B6%E4%BD%9C/">docker镜像制作(dockerfile)</a>
             </li>
             
         </ul>
@@ -271,6 +284,10 @@
         
         <li>
             <a class="footer-post" href="/vitoblog/categories/hexo/">hexo</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/vitoblog/categories/kubernetes/">kubernetes</a>
         </li>
         
         <li>

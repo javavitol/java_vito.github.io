@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="Kubernetes 也称为K8s，是用于自动部署、扩缩和管理容器化应用程序的开源系统。 它将组成应用程序的容器组合成逻辑单元，以便于管理和服务发现。 Kubernetes 源自Google 15 年生产环境的运维经验，同时凝聚了社区的最佳创意和实践。">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Vito">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="kubernetes介绍安装(kubeadm安装)"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content=""/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    
+        <meta name="twitter:card" content="summary" />
+    
+    
+    
+
+    <!-- Title -->
+    
+    <title>kubernetes介绍安装(kubeadm安装) - </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/vitoblog/css/style.css">
+
+
+    <!-- Google Analytics -->
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/vitoblog/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/vitoblog/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/vitoblog/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/vitoblog/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/vitoblog/categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/vitoblog/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/vitoblog/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/vitoblog/2023/01/31/kubernetes%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85/">
+                kubernetes介绍安装(kubeadm安装)
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2023-01-31</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/vitoblog/categories/kubernetes/">kubernetes</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>Kubernetes 也称为K8s，是用于自动部署、扩缩和管理容器化应用程序的开源系统。 它将组成应用程序的容器组合成逻辑单元，以便于管理和服务发现。 Kubernetes 源自Google 15 年生产环境的运维经验，同时凝聚了社区的最佳创意和实践。</p>
+<span id="more"></span>
+<br>
+
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h5 id="一、-kubeadm-安装kubernetes"><a href="#一、-kubeadm-安装kubernetes" class="headerlink" title="一、 kubeadm 安装kubernetes"></a>一、 kubeadm 安装kubernetes</h5><ol>
+<li><p>检查操作系统版本，kubernetes如果是在centos7.5版本以下安装，可能会导致一系列问题出现，所以要求在7.5版本以上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> /etc/centos-release</span><br><span class="line">CentOS Linux release 7.9.2009 (Core)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>主机名解析，为了方便后面集群节点间的直接调用，在这里配置以下主机名解析，企业中推荐使用内部DNS服务器。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/hosts  <span class="comment"># 添加以下节点，前面是你的主机ip</span></span><br><span class="line">192.168.121.100 master</span><br><span class="line">192.168.121.101 node1</span><br><span class="line">192.168.121.102 node2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>时间同步，kubernetes要求集群中的节点时间必须精确一致，这里直接使用chronyd服务从网络同步时间，企业中建议配置内部的时间同步服务器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl start chronyd  <span class="comment"># 启动chronyd服务</span></span><br><span class="line">$ systemctl <span class="built_in">enable</span> chronyd <span class="comment"># 设置chronyd 服务开机启动</span></span><br><span class="line">$ <span class="built_in">date</span> <span class="comment"># 使用该命令验证时间</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>禁用ptables 和 firewalld服务<br>kubernetes和docker在运行中会产生大量的iptables规则，为了不让系统规则跟它们混淆，直接关闭系统的规则</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl stop firewalld  <span class="comment"># 关闭firewalld服务</span></span><br><span class="line">$ systemctl <span class="built_in">disable</span> firewalld</span><br><span class="line">$ systemctl stop iptables <span class="comment"># 关闭iptables服务</span></span><br><span class="line">$ systemctl <span class="built_in">disable</span> iptables</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>禁用selinux<br>selinux是linux系统下的一个安全服务，如果不关闭他，在安装集群中会产生各种各样的问题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ getenforce <span class="comment"># 查看状态</span></span><br><span class="line">$ setenforce 0  <span class="comment"># 临时关闭</span></span><br><span class="line">$ vim /etc/selinux/config   <span class="comment"># SELINUX=disabled, 修改完后，需要重启才生效</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>禁用swap分区<br>swap分区指的是虚拟内存分区，他的作用是在物理内存使用完之后，将磁盘空间虚拟成内存来使用，启用swap设备会对系统的性能产生非常负面的影响，因此kubernetes要求每个节点都要禁用swap设备，但是如果因为某些原因不能关闭swap分区，就需要再集群安装中明确参数进行配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/fstab  <span class="comment"># 注释以下这行，重启服务器</span></span><br><span class="line">/dev/mapper/centos-swap swap</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改linux的内核参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改linux的内核参数，添加网桥过滤和地址转发功能</span></span><br><span class="line"><span class="comment"># 编辑 /etc/sysctl.d/kubernetes.conf 文件添加以下配置</span></span><br><span class="line">net.bridge-nf-call-ip6tables = 1</span><br><span class="line">net.bridge-nf-call-iptables = 1</span><br><span class="line">net.ipv4.ip_forward = 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 让文件生效</span></span><br><span class="line">$ sysctl -p</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载网桥过滤模块, 用于kubernetes service模块里面的ipvs模式</span></span><br><span class="line">$ modprobe br_netfilter</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看网桥过滤模块是否加载成功</span></span><br><span class="line">$ lsmod | grep br_netfilter</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置ipvs功能<br>在kubernetes中service有2种代理模式，一种是基于iptables,一种是基于ipvs，两者比较的话，ipvs的性能明显要高一些，但是如果要使用他，需要手动载入ipvs模块</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 ipset和 ipvsadm</span></span><br><span class="line">$ yum install ipset ipvsadmin -y</span><br><span class="line"><span class="comment"># 添加需要加载的模块写入脚本文件</span></span><br><span class="line">$ <span class="built_in">cat</span> &lt;&lt;<span class="string">EOF &gt; /etc/sysconfig/modules/ipvs.modules</span></span><br><span class="line"><span class="string">#! /bin/bash</span></span><br><span class="line"><span class="string">modprobe -- ip_vs</span></span><br><span class="line"><span class="string">modprobe -- ip_vs_rr</span></span><br><span class="line"><span class="string">modprobe -- ip_vs_wrr</span></span><br><span class="line"><span class="string">modprobe -- ip_vs_sh</span></span><br><span class="line"><span class="string">modprobe -- nf_conntrack_ipv4</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"><span class="comment"># 为脚本添加执行权限</span></span><br><span class="line">$ sudo <span class="built_in">chmod</span> +x /etc/sysconfig/modules/ipvs.modules</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行脚本</span></span><br><span class="line">$ /bin/bash /etc/sysconfig/modules/ipvs.modules</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看模块是否加载成功</span></span><br><span class="line">$ lsmod | grep -e ip_vs -e nf_conntrack_ipv4</span><br></pre></td></tr></table></figure></li>
+<li><p>重启服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ reboot</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="二、安装docker"><a href="#二、安装docker" class="headerlink" title="二、安装docker"></a>二、安装docker</h4><p>可以查看之前的博客文章 《<a href="/vitoblog/2023/01/26/docker/" title="docker安装">docker安装</a>》</p>
+<h4 id="三、安装kubernetes组件"><a href="#三、安装kubernetes组件" class="headerlink" title="三、安装kubernetes组件"></a>三、安装kubernetes组件</h4><ol>
+<li>由于kubernetes的镜像源在国外，速度比较慢，这里切换成国内镜像源<br>编辑<code>/etc/yum.repos.d/kubernetes.repo</code> 添加配置如下：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[kubernetes]</span><br><span class="line">name=Kubernetes</span><br><span class="line">baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br><span class="line">repo.gpgcheck=0</span><br><span class="line">gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg</span><br><span class="line">	   https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>安装kubeadm,kubelet和kubectl<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum install --<span class="built_in">setopt</span>=obsoletes=0 kubeadm-1.17.4-0 kubelet-1.17.4-0 kubectl-1.17.4-0 -y</span><br></pre></td></tr></table></figure></li>
+<li>配置kubelet的cgroup<br>编辑<code>/etc/sysconfig/kubelet</code> 添加如下：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">KUBELET_CGROUP_ARGS=<span class="string">&quot;--cgroup-driver=systemd&quot;</span></span><br><span class="line">KUBE_PROXY_MODE=<span class="string">&quot;ipvs&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li>开机kubelet启动<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl <span class="built_in">enable</span> kubelet</span><br></pre></td></tr></table></figure>
+<br></li>
+</ol>
+<h4 id="四、集群初始化"><a href="#四、集群初始化" class="headerlink" title="四、集群初始化"></a>四、集群初始化</h4><p>通过命令可以查看集群所需要的组件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubeadm config images list</span><br></pre></td></tr></table></figure>
+<p>结果如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">k8s.gcr.io/kube-apiserver:v1.17.17</span><br><span class="line">k8s.gcr.io/kube-controller-manager:v1.17.17</span><br><span class="line">k8s.gcr.io/kube-scheduler:v1.17.17</span><br><span class="line">k8s.gcr.io/kube-proxy:v1.17.17</span><br><span class="line">k8s.gcr.io/pause:3.1</span><br><span class="line">k8s.gcr.io/etcd:3.4.3-0</span><br><span class="line">k8s.gcr.io/coredns:1.6.5</span><br></pre></td></tr></table></figure>
+<p><font color=yellow> <em>因为国内的镜像名和docker官方提供的镜像名不一样，则，需要先从国内拉取，然后修改tag<br>如果是直接用国外镜像库，则该步骤可以省略</em> </font></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">images=(</span><br><span class="line">kube-apiserver:v1.17.17</span><br><span class="line">kube-controller-manager:v1.17.17</span><br><span class="line">kube-scheduler:v1.17.17</span><br><span class="line">kube-proxy:v1.17.17</span><br><span class="line">pause:3.1</span><br><span class="line">etcd:3.4.3-0</span><br><span class="line">coredns:1.6.5</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> imageName <span class="keyword">in</span> <span class="variable">$&#123;images[@]&#125;</span> ; <span class="keyword">do</span></span><br><span class="line">	docker pull registry.cn-hangzhou.aliyuncs.com/google_containers/<span class="variable">$imageName</span></span><br><span class="line">	docker tag registry.cn-hangzhou.aliyuncs.com/google_containers/<span class="variable">$imageName</span> k8s.gcr.io/<span class="variable">$imageName</span></span><br><span class="line">	docker rmi registry.cn-hangzhou.aliyuncs.com/google_containers/<span class="variable">$imageName</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<br>
+
+<p><font color=yellow>以下命令只在集群master节点上执行</font><br>1.创建集群</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ kubeadm init \</span><br><span class="line">--kubernetes-version=v1.17.17 \</span><br><span class="line">--pod-network-cidr=10.244.0.0/16 \</span><br><span class="line">--service-cidr=10.96.0.0/12 \</span><br><span class="line">--apiserver-advertise-address=192.168.121.100 <span class="comment">#master节点的ip地址，替换自己ip</span></span><br></pre></td></tr></table></figure>
+<p>2.创建必要文件(执行脚本kubectl要读取的配置文件)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">mkdir</span> -p <span class="variable">$HOME</span>/.kube</span><br><span class="line">$ sudo <span class="built_in">cp</span> -i /etc/kubernetes/admin.conf <span class="variable">$HOME</span>/.kube/config</span><br><span class="line">$ sudo <span class="built_in">chown</span> $(<span class="built_in">id</span> -u):$(<span class="built_in">id</span> -g) <span class="variable">$HOME</span>/.kube/config</span><br></pre></td></tr></table></figure>
+<br>
+<br>
+
+<font color=yellow>
+    以下命令只在集群node节点上执行
+    并且内容是根据master初始化后得的token进行替换
+</font>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ kubeadm <span class="built_in">join</span> 192.168.121.100:6443 --token ms1c1a.e7uv3yj3ftmtnxk3 \</span><br><span class="line">    --discovery-token-ca-cert-hash sha256:5de5c81e460d298bf2703c6a959c2e6e953f505d246421c531097cbfb24feb47</span><br></pre></td></tr></table></figure>
+
+<p>结果如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NAME     STATUS     ROLES    AGE     VERSION</span><br><span class="line">master   NotReady   master   8m57s   v1.17.4</span><br><span class="line">node1    NotReady   &lt;none&gt;   20s     v1.17.4</span><br><span class="line">node2    NotReady   &lt;none&gt;   4s      v1.17.4</span><br></pre></td></tr></table></figure>
+<p>这里node节点已经加入到集群中，但是 STATUS状态是 <font color=yellow>NotReady</font> 是因为，还没配置网络插件</p>
+<p>如果安装集群 token 过期，则在master使用命令，生成新的<font color=red> token</font> </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubeadm token create --print-join-command</span><br></pre></td></tr></table></figure>
+
+<p>查看 token</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get secret -n kube-system</span><br></pre></td></tr></table></figure>
+
+<h4 id="五、初始化失败"><a href="#五、初始化失败" class="headerlink" title="五、初始化失败"></a>五、初始化失败</h4><p>如果初始化失败，使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubeadm reset <span class="comment"># 清空</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="六、安装网络插件"><a href="#六、安装网络插件" class="headerlink" title="六、安装网络插件"></a>六、安装网络插件</h4><p>kubernetes支持多种网络插件，比如:flannel, calico, canal等等，任选一种使用即可，本次选择 flannel<br><font color=yellow>以下命令只在集群master节点上执行</font></p>
+<ol>
+<li><p>获取fannel的配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml</span><br></pre></td></tr></table></figure></li>
+<li><p>修改文件中 quay.io仓库为 <code>quay-mirror.qiniu.com</code></p>
+</li>
+<li><p>使用配置文件启动 flannel</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl apply -f kube-flannel.yml</span><br></pre></td></tr></table></figure></li>
+<li><p>查看集群节点状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get nodes</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>成功状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NAME     STATUS   ROLES    AGE   VERSION</span><br><span class="line">master   Ready    master   29m   v1.17.4</span><br><span class="line">node1    Ready    &lt;none&gt;   21m   v1.17.4</span><br><span class="line">node2    Ready    &lt;none&gt;   20m   v1.17.4</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>表示集群已经安装成功</p>
+</li>
+</ol>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/vitoblog/tags/kubernetes/">#kubernetes</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    This theme was developed by <a href="https://github.com/klugjo">Jonathan Klughertz</a>. The source code is available on Github. Create Websites. Make Magic.
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/vitoblog/2023/01/31/kubernetes%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85/">kubernetes介绍安装(kubeadm安装)</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/vitoblog/2023/01/28/docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%95%9C%E5%83%8F%E6%93%8D%E4%BD%9C/">docker私有仓库搭建及镜像操作</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/vitoblog/2023/01/28/docker%E6%9C%8D%E5%8A%A1%E7%BC%96%E6%8E%92/">docker服务编排(docker compose</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/vitoblog/2023/01/28/docker%E9%95%9C%E5%83%8F%E5%88%B6%E4%BD%9C/">docker镜像制作(dockerfile)</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/vitoblog/categories/hexo/">hexo</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/vitoblog/categories/kubernetes/">kubernetes</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/vitoblog/categories/docker/">docker</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/klugjo/hexo-theme-alpha-dust">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://twitter.com/?lang=en">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-twitter"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://www.facebook.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://www.instagram.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-instagram"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://dribbble.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-dribbble"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://telegram.org/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-telegram"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://www.behance.net/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-behance"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://500px.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-500px"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:test@example.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a target="_blank" rel="noopener" href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+
+<script src="/vitoblog/js/main.js"></script>
+
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
